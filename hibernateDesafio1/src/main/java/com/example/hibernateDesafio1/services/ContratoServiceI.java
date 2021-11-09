@@ -1,8 +1,10 @@
-package com.example.hibernateDesafio1.entities;
+package com.example.hibernateDesafio1.services;
 
 import java.util.List;
 
-public interface ContratoDaoI {
+import com.example.hibernateDesafio1.entities.Contrato;
+
+public interface ContratoServiceI {
 	
 	public void insertar(Contrato contrato);
 	
@@ -15,6 +17,5 @@ public interface ContratoDaoI {
 	public void deleted(Contrato contrato);
 
 	public void update(Contrato contrato);
-
 
 }

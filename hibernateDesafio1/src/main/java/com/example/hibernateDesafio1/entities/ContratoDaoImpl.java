@@ -25,7 +25,7 @@ public class ContratoDaoImpl implements ContratoDaoI{
 	}
 
 	@Override
-	public List<Contrato> gelAll(Contrato contrato) {
+	public List<Contrato> gelAll() {
 		Session session = entityManager.unwrap(Session.class);
 		
 		@SuppressWarnings("unchecked")

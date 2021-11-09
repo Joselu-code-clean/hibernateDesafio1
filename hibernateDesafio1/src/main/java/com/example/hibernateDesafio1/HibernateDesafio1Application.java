@@ -64,6 +64,8 @@ public class HibernateDesafio1Application implements CommandLineRunner{
 		cliente1.setNombre("MARIA");
 		clienteService.update(cliente1);
 		
+		// CREAMOS CONTRATOS
+		
 	}
 	
 	
