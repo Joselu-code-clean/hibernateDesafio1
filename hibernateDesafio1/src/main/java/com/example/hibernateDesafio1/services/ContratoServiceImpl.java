@@ -24,7 +24,7 @@ public class ContratoServiceImpl implements ContratoServiceI{
 	}
 
 	@Override
-	public List<Contrato> gelAll() {
+	public List<Contrato> getAll() {
 		return contratoDaoI.gelAll();
 	}
 

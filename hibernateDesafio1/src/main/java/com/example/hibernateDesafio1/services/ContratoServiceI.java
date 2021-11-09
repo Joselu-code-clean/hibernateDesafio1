@@ -8,7 +8,7 @@ public interface ContratoServiceI {
 	
 	public void insertar(Contrato contrato);
 	
-	public List<Contrato> gelAll();
+	public List<Contrato> getAll();
 
 	public Contrato searchById(Long idContrato);
 	

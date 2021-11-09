@@ -9,13 +9,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.hibernateDesafio1.entities.Cliente;
 import com.example.hibernateDesafio1.entities.ClienteDaoImpl;
+import com.example.hibernateDesafio1.entities.Contrato;
 import com.example.hibernateDesafio1.services.ClienteServiceImpl;
+import com.example.hibernateDesafio1.services.ContratoServiceImpl;
 
 @SpringBootApplication
 public class HibernateDesafio1Application implements CommandLineRunner{
 
 	@Autowired
 	private ClienteServiceImpl clienteService;
+	
+	@Autowired
+	private ContratoServiceImpl contratoService;
 	
 	@Autowired
 	private ClienteDaoImpl clienteDao;
@@ -47,13 +52,6 @@ public class HibernateDesafio1Application implements CommandLineRunner{
 		cliente3.setDocumento_identidad("00045789E");
 		
 		
-		// INSERTAMOS LOS CLIENTES
-		// clienteDao.insertar(cliente1);
-		
-		clienteService.insertar(cliente1);
-		clienteService.insertar(cliente2);
-		clienteService.insertar(cliente3);
-		
 		// MOSTRAMOS LA LISTA DE LOS CLIENTES
 		List<Cliente> listaCliente = clienteService.getAll();
 		for (Cliente cliente : listaCliente) {
@@ -65,6 +63,33 @@ public class HibernateDesafio1Application implements CommandLineRunner{
 		clienteService.update(cliente1);
 		
 		// CREAMOS CONTRATOS
+		Contrato contrato1 = new Contrato();
+		contrato1.setPrecio_mensual(12.30);
+		contrato1.setFecha_vigencia("09/11/2021");
+		contrato1.setFecha_caducidad("10/12/2021");
+		
+		Contrato contrato2 = new Contrato();
+		contrato2.setPrecio_mensual(20.80);
+		contrato2.setFecha_vigencia("09/11/2021");
+		contrato2.setFecha_caducidad("14/12/2021");
+		
+		cliente1.setContrato(contrato1);
+		cliente1.setContrato(contrato2);
+		
+		// INSERTAMOS LOS CLIENTES
+		// clienteDao.insertar(cliente1);
+		
+		clienteService.insertar(cliente1);
+		clienteService.insertar(cliente2);
+		clienteService.insertar(cliente3);
+		
+		// MOSTRAMOS LA LISTA DE LOS CONTRATOS
+		List<Contrato> listaContratos = contratoService.getAll();
+		for (Contrato contrato : listaContratos) {
+			System.out.println(contrato.getCliente().getNombre());
+		}
+		
+		
 		
 	}
 	
