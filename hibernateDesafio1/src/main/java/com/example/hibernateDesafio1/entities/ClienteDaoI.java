@@ -8,10 +8,10 @@ public interface ClienteDaoI {
 	
 	public List<Cliente> getAll();
 	
-	public Cliente searchById(Cliente cliente);
+	public Cliente searchById(Long idcliente);
 	
 	public void deleted(Cliente cliente);
 
-	public void update(Cliente cliente);
+	public void update(Cliente cliente); 
 	
 }
