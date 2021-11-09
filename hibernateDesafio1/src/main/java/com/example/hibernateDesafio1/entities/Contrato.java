@@ -1,7 +1,5 @@
 package com.example.hibernateDesafio1.entities;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -64,7 +64,8 @@ public class Contrato {
 		this.precio_mensual = precio_mensual;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CLIENTE", nullable = false)
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -72,7 +73,5 @@ public class Contrato {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
 	
 }

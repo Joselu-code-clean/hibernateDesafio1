@@ -1,5 +1,8 @@
 package com.example.hibernateDesafio1.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +28,7 @@ public class Cliente {
 	
 	private String documento_identidad;
 	
-	private Contrato contrato;
+	private List<Contrato> listaContratos;
 
 	
 	@Id
@@ -74,14 +78,13 @@ public class Cliente {
 		this.documento_identidad = documento_identidad;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CONTRATO", nullable = false)
-	public Contrato getContrato() {
-		return contrato;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
+	public List<Contrato> getContrato() {
+		return listaContratos;
 	}
 
-	public void setContrato(Contrato contrato) {
-		this.contrato = contrato;
+	public void setContrato(List<Contrato> listaContratos) {
+		this.listaContratos = listaContratos;
 	}
 	
 	

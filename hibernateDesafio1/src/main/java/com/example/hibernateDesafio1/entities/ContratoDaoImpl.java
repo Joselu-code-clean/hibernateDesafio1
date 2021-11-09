@@ -40,22 +40,23 @@ public class ContratoDaoImpl implements ContratoDaoI{
 	public Contrato searchById(Long idContrato) {
 		Session session = entityManager.unwrap(Session.class);
 		
-		Contrato contrato = (Contrato) session.createQuery("FROM Contrato WHERE ID_CONTRATO=" + idContrato);
+		Contrato contrato = (Contrato) session.createQuery("FROM Contrato WHERE id=" + idContrato);
 		
 		session.close();
 		
 		return contrato;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Contrato searchByIdOfClient(Long idCliente) {
+	public List<Contrato> searchByIdOfClient(Long idCliente) {
 		Session session = entityManager.unwrap(Session.class);
 		
-		Contrato contrato = (Contrato) session.createQuery("FROM Contrato WHERE ID_CLIENTE=" + idCliente);
+		List<Contrato> listaContratos = (List<Contrato>) session.createQuery("FROM Contrato WHERE id=" + idCliente).list();
 		
 		session.close();
 		
-		return contrato;
+		return listaContratos;
 	}
 
 	@Override

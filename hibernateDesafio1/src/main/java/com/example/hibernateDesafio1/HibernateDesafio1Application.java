@@ -1,5 +1,6 @@
 package com.example.hibernateDesafio1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +60,8 @@ public class HibernateDesafio1Application implements CommandLineRunner{
 		}
 		
 		// MODIFICAMOS UN CLIENTE.
-		cliente1.setNombre("MARIA");
-		clienteService.update(cliente1);
+		//cliente1.setNombre("MARIA");
+		//clienteService.update(cliente1);
 		
 		// CREAMOS CONTRATOS
 		Contrato contrato1 = new Contrato();
@@ -73,26 +74,27 @@ public class HibernateDesafio1Application implements CommandLineRunner{
 		contrato2.setFecha_vigencia("09/11/2021");
 		contrato2.setFecha_caducidad("14/12/2021");
 		
-		cliente1.setContrato(contrato1);
-		cliente1.setContrato(contrato2);
+		contrato1.setCliente(cliente1);
+		contrato2.setCliente(cliente1);
+		
+
+		List<Contrato> listaContratos = new ArrayList<>();
+		listaContratos.add(contrato1);
+		listaContratos.add(contrato2);
+		
+		cliente1.setContrato(listaContratos);
 		
 		// INSERTAMOS LOS CLIENTES
 		// clienteDao.insertar(cliente1);
 		
 		clienteService.insertar(cliente1);
-		clienteService.insertar(cliente2);
-		clienteService.insertar(cliente3);
 		
 		// MOSTRAMOS LA LISTA DE LOS CONTRATOS
-		List<Contrato> listaContratos = contratoService.getAll();
-		for (Contrato contrato : listaContratos) {
+		List<Contrato> listaDeTodosContratos = contratoService.getAll();
+		for (Contrato contrato : listaDeTodosContratos) {
 			System.out.println(contrato.getCliente().getNombre());
 		}
 		
-		
-		
 	}
-	
-	
 
 }

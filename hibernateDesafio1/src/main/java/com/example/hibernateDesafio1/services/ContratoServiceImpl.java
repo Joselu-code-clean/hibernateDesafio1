@@ -34,7 +34,7 @@ public class ContratoServiceImpl implements ContratoServiceI{
 	}
 
 	@Override
-	public Contrato searchByIdOfClient(Long idContrato) {
+	public List<Contrato> searchByIdOfClient(Long idContrato) {
 		return contratoDaoI.searchByIdOfClient(idContrato);
 	}
 

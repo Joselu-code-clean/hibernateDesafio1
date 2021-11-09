@@ -10,7 +10,7 @@ public interface ContratoDaoI {
 
 	public Contrato searchById(Long idContrato);
 	
-	public Contrato searchByIdOfClient(Long idContrato);
+	public List<Contrato> searchByIdOfClient(Long idContrato);
 
 	public void deleted(Contrato contrato);
 
