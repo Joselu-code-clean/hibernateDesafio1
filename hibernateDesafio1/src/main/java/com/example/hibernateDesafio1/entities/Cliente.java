@@ -24,6 +24,7 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_CLIENTE", precision = 15)
 	public Long getId() {
 		return id;
 	}

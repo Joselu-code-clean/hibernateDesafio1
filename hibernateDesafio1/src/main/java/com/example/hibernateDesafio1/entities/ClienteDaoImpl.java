@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ClienteDaoImpl implements ClienteDaoI{
 
 	@Autowired
@@ -22,12 +24,12 @@ public class ClienteDaoImpl implements ClienteDaoI{
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cliente> getAll() {
 		Session session = entityManager.unwrap(Session.class);
 		
-		List<Cliente> listaClientes = (List<Cliente>) session.createQuery("FROM CLIENTE");
+		@SuppressWarnings("unchecked")
+		List<Cliente> listaClientes = (List<Cliente>) session.createQuery("FROM Cliente").list();
 		
 		session.close();
 		
@@ -38,7 +40,7 @@ public class ClienteDaoImpl implements ClienteDaoI{
 	public Cliente searchById(Long idCliente) {
 		Session session = entityManager.unwrap(Session.class);
 		
-		Cliente cliente = (Cliente) session.createQuery("FROM CLIENTE WHERE ID_CLIENTE=" + idCliente);
+		Cliente cliente = (Cliente) session.createQuery("FROM Cliente WHERE ID_CLIENTE=" + idCliente);
 		
 		session.close();
 		
@@ -49,7 +51,7 @@ public class ClienteDaoImpl implements ClienteDaoI{
 	public void deleted(Cliente cliente) {
 		Session session = entityManager.unwrap(Session.class);
 		
-		session.delete(cliente);
+		entityManager.remove(entityManager.merge(cliente));
 		
 		session.close();
 		
@@ -59,7 +61,7 @@ public class ClienteDaoImpl implements ClienteDaoI{
 	public void update(Cliente cliente) {
 		Session session = entityManager.unwrap(Session.class);
 		
-		session.update(cliente);;
+		session.saveOrUpdate(cliente);
 		
 		session.close();
 		
